@@ -1,0 +1,47 @@
+.contactList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.contact {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  flex-basis: calc(25% - 8px); /* Адаптивна ширина для 4 елементів в ряд з урахуванням проміжку */
+  min-width: 180px; /* Мінімальна ширина для довгих імен */
+  box-sizing: border-box;
+}
+
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.contactName,
+.contactNumber {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.icon {
+  font-size: 16px;
+  color: black !important; /* Примусовий чорний колір для іконок */
+}
+
+.deleteButton {
+  padding: 4px 8px;
+  background-color: #e0e0e0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.deleteButton:hover {
+  background-color: #bdbdbd;
+}

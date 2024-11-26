@@ -1,0 +1,45 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* Проміжок між елементами */
+  max-width: 300px;
+  margin: 0; /* Забираємо вирівнювання по центру */
+  border: 1px solid #ccc; /* Сірий бордер форми */
+  padding: 8px; /* Відступи всередині форми */
+  border-radius: 4px; /* Заокруглення бордера (опційно) */
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  text-align: left;
+}
+
+input {
+  padding: 8px;
+  border: 1px solid #ccc; /* Сірий бордер для полів вводу */
+  border-radius: 4px;
+}
+
+button {
+  align-self: flex-start; /* Вирівнюємо кнопку зліва */
+  padding: 10px 20px;
+  background-color: #e0e0e0; /* Світло-сірий колір кнопки */
+  color: black;
+  border: 1px solid #ccc; /* Бордер для кнопки */
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover,
+button:focus {
+  background-color: #bdbdbd; /* Темніший сірий при ховері або фокусі */
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: 4px;
+}

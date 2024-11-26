@@ -1,0 +1,17 @@
+.searchBoxContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 4px; /* Відступ між текстом і полем */
+  max-width: 300px; /* Максимальна ширина для поля пошуку */
+}
+
+.label {
+  font-weight: bold;
+  text-align: left;
+}
+
+.searchBox {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
