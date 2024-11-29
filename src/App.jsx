@@ -1,11 +1,10 @@
-// src/App.jsx
 import React from 'react';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from './redux/store';
-import ContactForm from './ContactForm';
-import ContactList from './ContactList';
-import SearchBox from './SearchBox';
+import ContactForm from './components/ContactForm/ContactForm';
+import ContactList from './components/ContactList/ContactList';
+import SearchBox from './components/SearchBox/SearchBox';
 
 function App() {
   return (
