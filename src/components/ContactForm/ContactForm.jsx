@@ -1,41 +1,29 @@
-import React from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
-import styles from './ContactForm.module.css';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addContact } from './redux/contactsSlice';
 
-// Схема валідації з Yup
-const ContactFormSchema = Yup.object().shape({
-  name: Yup.string().min(3, 'Must be at least 3 characters').max(50, 'Must be 50 characters or less').required(' '),
-  number: Yup.string().min(3, 'Must be at least 3 characters').max(50, 'Must be 50 characters or less').required(' '),
-});
+function ContactForm() {
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
+  const dispatch = useDispatch();
 
-const ContactForm = ({ onSubmit }) => {
+  const handleSubmit = e => {
+    e.preventDefault();
+    dispatch(addContact({ id: Date.now(), name, number }));
+    setName('');
+    setNumber('');
+  };
+
   return (
-    <Formik
-      initialValues={{ name: '', number: '' }}
-      validationSchema={ContactFormSchema}
-      onSubmit={(values, { resetForm }) => {
-        onSubmit(values);
-        resetForm();
-      }}
-    >
-      <Form className={styles.form}>
-        <label>
-          Name:
-          <Field name="name" type="text" />
-          <ErrorMessage name="name" component="div" className={styles.error} />
-        </label>
-        <label>
-          Number:
-          <Field name="number" type="text" />
-          <ErrorMessage name="number" component="div" className={styles.error} />
-        </label>
-        <button type="submit">Add Contact</button>
-      </Form>
-    </Formik>
+    <form onSubmit={handleSubmit}>
+      <input type="text" value={name} onChange={e => setName(e.target.value)} placeholder="Name" />
+      <input type="text" value={number} onChange={e => setNumber(e.target.value)} placeholder="Number" />
+      <button type="submit">Add Contact</button>
+    </form>
   );
-};
+}
 
 export default ContactForm;
+
 
 
