@@ -1,26 +1,38 @@
-import React from 'react';
-import { Provider } from 'react-redux';
-import { PersistGate } from 'redux-persist/integration/react';
-import { store, persistor } from './redux/store';
-import ContactForm from './components/ContactForm/ContactForm';
-import ContactList from './components/ContactList/ContactList';
-import SearchBox from './components/SearchBox/SearchBox';
-import styles from './App.module.css';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchContacts } from './redux/contactsOps';
+import { selectFilteredContacts } from './redux/contactsSlice';
+import { selectNameFilter } from './redux/filtersSlice';
+import ContactForm from './components/ContactForm';
+import ContactList from './components/ContactList';
+import SearchBox from './components/SearchBox';
 
-function App() {
+const App = () => {
+  const dispatch = useDispatch();
+
+  // Отримуємо стан контактів і фільтрів
+  const contacts = useSelector(selectFilteredContacts);
+  const filter = useSelector(selectNameFilter);
+  const loading = useSelector(state => state.contacts.loading);
+  const error = useSelector(state => state.contacts.error);
+
+  // Завантаження контактів при першому рендері
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
+
   return (
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <div>
-          <h1>Phonebook</h1>
-          <ContactForm />
-          <SearchBox />
-          <ContactList />
-        </div>
-      </PersistGate>
-    </Provider>
+    <div style={{ padding: '20px', maxWidth: '600px', margin: '0 auto' }}>
+      <h1>Книга контактів</h1>
+      <ContactForm />
+      <h2>Контакти</h2>
+      <SearchBox />
+      {loading && <p>Завантаження...</p>}
+      {error && <p>Сталася помилка: {error}</p>}
+      <ContactList contacts={contacts} filter={filter} />
+    </div>
   );
-}
+};
 
 export default App;
 
