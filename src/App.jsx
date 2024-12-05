@@ -9,14 +9,12 @@ import SearchBox from './components/SearchBox';
 
 const App = () => {
   const dispatch = useDispatch();
-
-  // Отримуємо стан контактів і фільтрів
+ 
   const contacts = useSelector(selectFilteredContacts);
   const filter = useSelector(selectNameFilter);
   const loading = useSelector(state => state.contacts.loading);
   const error = useSelector(state => state.contacts.error);
 
-  // Завантаження контактів при першому рендері
   useEffect(() => {
     dispatch(fetchContacts());
   }, [dispatch]);
